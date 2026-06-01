@@ -1,13 +1,6 @@
-import { CoachStatisticRanking, Player, PlayerTeamSeason } from './general.ts';
+import { CoachStatisticRanking, Player, PlayerTeamSeason, Boxscore as BaseBoxscore } from './general.ts';
 
-export interface Boxscore {
-  boxscore_id: string;
-  organization_id: string;
-  division_id: string;
-  game_id: string;
-  team_id: string;
-  sport_boxscore_id: string;
-  season: number;
+export interface Boxscore extends BaseBoxscore {
   minutes_played: number;
   points: number;
   successful_pass_plays: number;
@@ -76,7 +69,6 @@ export interface Boxscore {
   quarterback_hurries: number;
   fumbles: number;
   fumbles_lost: number;
-  final: number;
 }
 
 export type Boxscores = {[boxscore_id: string]: Boxscore};

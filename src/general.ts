@@ -687,4 +687,17 @@ export interface BracketTeam {
 
 export type BracketTeams = {[bracket_team_id: string]: BracketTeam};
 
+export interface Boxscore {
+  boxscore_id: string;
+  organization_id: string;
+  division_id: string;
+  game_id: string;
+  team_id: string;
+  sport_boxscore_id: string;
+  season: number;
+  final: number;
+}
+
+export type Boxscores = {[boxscore_id: string]: Boxscore};
+
 

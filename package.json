@@ -1,6 +1,7 @@
 {
   "name": "@srating-io/types",
-  "version": "0.0.1",
+  "private": false,
+  "version": "0.0.2",
   "description": "srating.io shared TypeScript types for GUI and API",
   "type": "module",
   "main": "",
