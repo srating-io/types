@@ -1,0 +1,29 @@
+{
+  "name": "@srating-io/types",
+  "version": "0.0.1",
+  "description": "srating.io shared TypeScript types for GUI and API",
+  "type": "module",
+  "main": "",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clean": "rm -rf dist",
+    "prebuild": "node scripts/generate-exports.js",
+    "build": "npm run clean && tsc"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/srating-io/types.git"
+  },
+  "keywords": [],
+  "author": "Evan Smalley",
+  "bugs": {
+    "url": "https://github.com/srating-io/types/issues"
+  },
+  "homepage": "https://github.com/srating-io/types#readme"
+}
