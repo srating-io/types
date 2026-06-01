@@ -12,7 +12,11 @@
   "scripts": {
     "clean": "rm -rf dist",
     "prebuild": "node scripts/generate-exports.js",
-    "build": "npm run clean && tsc"
+    "build": "npm run clean && tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "devDependencies": {
     "typescript": "^6.0.3"
