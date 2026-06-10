@@ -714,3 +714,7 @@ export interface BaseConferencePlayerStatisticRanking {
   guid: string;
 	deleted: number;   
 }
+
+export type BaseConferencePlayerStatisticRankings = {
+  [conference_player_statistic_ranking_id: string]: BaseConferencePlayerStatisticRanking;
+}
