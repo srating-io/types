@@ -701,3 +701,16 @@ export interface Boxscore {
 export type Boxscores = {[boxscore_id: string]: Boxscore};
 
 
+export interface BaseConferencePlayerStatisticRanking {
+  conference_player_statistic_ranking_id: string;
+	organization_id: string;
+	division_id: string;
+	conference_id: string;
+	season: number;
+	sport_conference_player_statistic_id: string;
+  date_of_rank: string;
+	updated_at: string;
+	current: number;
+  guid: string;
+	deleted: number;   
+}

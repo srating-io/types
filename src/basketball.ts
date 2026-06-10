@@ -1,5 +1,5 @@
 
-import { CoachStatisticRanking, Player, PlayerTeamSeason, Boxscore as BaseBoxscore } from './general.ts';
+import { CoachStatisticRanking, Player, PlayerTeamSeason, Boxscore as BaseBoxscore, BaseConferencePlayerStatisticRanking } from './general.ts';
 
 
 export interface Boxscore extends BaseBoxscore {
@@ -710,6 +710,74 @@ export interface TransferPlayerSeason {
 }
 
 export type TransferPlayerSeasons = {[coach_team_season_id: string]: TransferPlayerSeason};
+
+export interface ConferencePlayerStatisticRanking extends BaseConferencePlayerStatisticRanking {
+  basketball_conference_player_statistic_id: string;
+	rating: number;
+	elo: number;
+	games: number;
+	minutes_played: number;
+	minutes_played_per_game: number;
+	field_goal: number;
+	field_goal_per_game: number;
+  field_goal_attempts: number;
+  field_goal_attempts_per_game: number;
+  field_goal_percentage: number;
+  field_goal_percentage_per_game: number;
+  two_point_field_goal: number;
+  two_point_field_goal_per_game: number;
+  two_point_field_goal_attempts: number;
+  two_point_field_goal_attempts_per_game: number;
+  two_point_field_goal_percentage: number;
+  two_point_field_goal_percentage_per_game: number;
+  three_point_field_goal: number;
+  three_point_field_goal_per_game: number;
+  three_point_field_goal_attempts: number;
+  three_point_field_goal_attempts_per_game: number;
+  three_point_field_goal_percentage: number;
+  three_point_field_goal_percentage_per_game: number;
+  free_throws: number;
+  free_throws_per_game: number;
+  free_throw_attempts: number;
+  free_throw_attempts_per_game: number;
+  free_throw_percentage: number;
+  free_throw_percentage_per_game: number;
+  offensive_rebounds: number;
+  offensive_rebounds_per_game: number;
+  defensive_rebounds: number;
+  defensive_rebounds_per_game: number;
+  total_rebounds: number;
+  total_rebounds_per_game: number;
+  assists: number;
+  assists_per_game: number;
+  steals: number;
+  steals_per_game: number;
+  blocks: number;
+  blocks_per_game: number;
+  turnovers: number;
+  turnovers_per_game: number;
+  fouls: number;
+  fouls_per_game: number;
+  points: number;
+  points_per_game: number;
+  offensive_rating: number | null;
+  defensive_rating: number | null;
+  efficiency_rating: number | null;
+	player_efficiency_rating: number;
+  true_shooting_percentage: number;
+  effective_field_goal_percentage: number;
+  offensive_rebound_percentage: number;
+  defensive_rebound_percentage: number;
+  total_rebound_percentage: number;
+  assist_percentage: number;
+  steal_percentage: number;
+  block_percentage: number;
+  turnover_percentage: number;
+  usage_percentage: number;
+  plus_minus: number;
+  guid: string;
+  deleted: number;
+}
 
 
 export type RankingTable = (StatisticRanking | PlayerStatisticRanking | ConferenceStatisticRanking | CoachStatisticRanking) & {
