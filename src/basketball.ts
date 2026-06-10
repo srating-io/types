@@ -1,5 +1,18 @@
 
-import { CoachStatisticRanking, Player, PlayerTeamSeason, Boxscore as BaseBoxscore, BaseConferencePlayerStatisticRanking } from './general.ts';
+import {
+  CoachStatisticRanking,
+  Player,
+  PlayerTeamSeason,
+  Boxscore as BaseBoxscore,
+  PlayerBoxscore as BasePlayerBoxscore,
+  PlaybyPlay as BasePlaybyPlay,
+  StatisticRanking as BaseStatisticRanking,
+  PlayerStatisticRanking as BasePlayerStatisticRanking,
+  ConferenceStatisticRanking as BaseConferenceStatisticRanking,
+  ConferencePlayerStatisticRanking as BaseConferencePlayerStatisticRanking,
+  LeagueStatisticRanking as BaseLeagueStatisticRanking,
+  LeaguePlayerStatisticRanking as BaseLeaguePlayerStatisticRanking,
+} from './general.ts';
 
 
 export interface Boxscore extends BaseBoxscore {
@@ -31,15 +44,7 @@ export type Boxscores = {[boxscore_id: string]: Boxscore};
 
 
 
-export interface PlayerBoxscore {
-  player_boxscore_id: string;
-  organization_id: string;
-  division_id: string;
-  game_id: string;
-  team_id: string;
-  player_id: string;
-  sport_player_boxscore_id: string;
-  season: number;
+export interface PlayerBoxscore extends BasePlayerBoxscore {
   first_name: string;
   last_name: string;
   position: string;
@@ -70,13 +75,7 @@ export interface PlayerBoxscore {
 export type PlayerBoxscores = {[player_boxscore_id: string]: PlayerBoxscore};
 
 
-
-export interface PlaybyPlay {
-  play_by_play_id: string;
-  organization_id: string;
-  division_id: string;
-  game_id: string;
-  sport_play_by_play_id: string;
+export interface PlaybyPlay extends BasePlaybyPlay {
   team_id: string;
   current_period: string;
   clock: string;
@@ -99,13 +98,7 @@ export interface PlaybyPlay {
 export type PlaybyPlays = {[play_by_play_id: string]: PlaybyPlay};
 
 
-export interface StatisticRanking {
-  statistic_ranking_id: string;
-  organization_id: string;
-  division_id: string;
-  sport_statistic_id: string;
-  season: number;
-  team_id: string;
+export interface StatisticRanking extends BaseStatisticRanking {
   max: number;
   rating: number;
   rank: number;
@@ -117,171 +110,159 @@ export interface StatisticRanking {
   ap_rank: number;
   coaches_rank: number;
   net_rank: number;
-  total_games?: number;
-  games?: number;
-  wins?: number;
-  losses?: number;
-  confwins?: number;
-  conflosses?: number;
-  neutralwins?: number;
-  neutrallosses?: number;
-  homewins?: number;
-  homelosses?: number;
-  roadwins?: number;
-  roadlosses?: number;
-  streak?: number;
-  win_margin?: number;
-  loss_margin?: number;
-  confwin_margin?: number;
-  confloss_margin?: number;
-  fatigue?: number;
-  desperation?: number;
-  over_confidence?: number;
-  minutes_played?: number;
-  field_goal?: number;
-  field_goal_attempts?: number;
-  field_goal_percentage?: number;
-  two_point_field_goal?: number;
-  two_point_field_goal_attempts?: number;
-  two_point_field_goal_percentage?: number;
-  three_point_field_goal?: number;
-  three_point_field_goal_attempts?: number;
-  three_point_field_goal_percentage?: number;
-  free_throws?: number;
-  free_throw_attempts?: number;
-  free_throw_percentage?: number;
-  offensive_rebounds?: number;
-  defensive_rebounds?: number;
-  total_rebounds?: number;
-  assists?: number;
-  steals?: number;
-  blocks?: number;
-  turnovers?: number;
-  fouls?: number;
-  points?: number;
-  possessions?: number;
-  pace?: number;
-  offensive_rating?: number;
-  defensive_rating?: number;
-  efficiency_rating?: number;
-  adjusted_efficiency_rating?: number;
-  opponent_field_goal?: number;
-  opponent_field_goal_attempts?: number;
-  opponent_field_goal_percentage?: number;
-  opponent_two_point_field_goal?: number;
-  opponent_two_point_field_goal_attempts?: number;
-  opponent_two_point_field_goal_percentage?: number;
-  opponent_three_point_field_goal?: number;
-  opponent_three_point_field_goal_attempts?: number;
-  opponent_three_point_field_goal_percentage?: number;
-  opponent_free_throws?: number;
-  opponent_free_throw_attempts?: number;
-  opponent_free_throw_percentage?: number;
-  opponent_offensive_rebounds?: number;
-  opponent_defensive_rebounds?: number;
-  opponent_total_rebounds?: number;
-  opponent_assists?: number;
-  opponent_steals?: number;
-  opponent_blocks?: number;
-  opponent_turnovers?: number;
-  opponent_fouls?: number;
-  opponent_points?: number;
-  opponent_possessions?: number;
-  opponent_pace?: number;
-  opponent_offensive_rating?: number;
-  opponent_defensive_rating?: number;
-  opponent_efficiency_rating?: number;
-  elo_sos?: number;
-  wins_rank?: number;
-  losses_rank?: number;
-  confwins_rank?: number;
-  conflosses_rank?: number;
-  neutralwins_rank?: number;
-  neutrallosses_rank?: number;
-  homewins_rank?: number;
-  homelosses_rank?: number;
-  roadwins_rank?: number;
-  roadlosses_rank?: number;
-  streak_rank?: number;
-  win_margin_rank?: number;
-  loss_margin_rank?: number;
-  confwin_margin_rank?: number;
-  confloss_margin_rank?: number;
-  fatigue_rank?: number;
-  desperation_rank?: number;
-  over_confidence_rank?: number;
-  minutes_played_rank?: number;
-  field_goal_rank?: number;
-  field_goal_attempts_rank?: number;
-  field_goal_percentage_rank?: number;
-  two_point_field_goal_rank?: number;
-  two_point_field_goal_attempts_rank?: number;
-  two_point_field_goal_percentage_rank?: number;
-  three_point_field_goal_rank?: number;
-  three_point_field_goal_attempts_rank?: number;
-  three_point_field_goal_percentage_rank?: number;
-  free_throws_rank?: number;
-  free_throw_attempts_rank?: number;
-  free_throw_percentage_rank?: number;
-  offensive_rebounds_rank?: number;
-  defensive_rebounds_rank?: number;
-  total_rebounds_rank?: number;
-  assists_rank?: number;
-  steals_rank?: number;
-  blocks_rank?: number;
-  turnovers_rank?: number;
-  fouls_rank?: number;
-  points_rank?: number;
-  possessions_rank?: number;
-  pace_rank?: number;
-  offensive_rating_rank?: number;
-  defensive_rating_rank?: number;
-  efficiency_rating_rank?: number;
-  adjusted_efficiency_rating_rank?: number;
-  opponent_field_goal_rank?: number;
-  opponent_field_goal_attempts_rank?: number;
-  opponent_field_goal_percentage_rank?: number;
-  opponent_two_point_field_goal_rank?: number;
-  opponent_two_point_field_goal_attempts_rank?: number;
-  opponent_two_point_field_goal_percentage_rank?: number;
-  opponent_three_point_field_goal_rank?: number;
-  opponent_three_point_field_goal_attempts_rank?: number;
-  opponent_three_point_field_goal_percentage_rank?: number;
-  opponent_free_throws_rank?: number;
-  opponent_free_throw_attempts_rank?: number;
-  opponent_free_throw_percentage_rank?: number;
-  opponent_offensive_rebounds_rank?: number;
-  opponent_defensive_rebounds_rank?: number;
-  opponent_total_rebounds_rank?: number;
-  opponent_assists_rank?: number;
-  opponent_steals_rank?: number;
-  opponent_blocks_rank?: number;
-  opponent_turnovers_rank?: number;
-  opponent_fouls_rank?: number;
-  opponent_points_rank?: number;
-  opponent_possessions_rank?: number;
-  opponent_pace_rank?: number;
-  opponent_offensive_rating_rank?: number;
-  opponent_defensive_rating_rank?: number;
-  opponent_efficiency_rating_rank?: number;
-  elo_sos_rank?: number;
-  guid: string;
-  date_of_rank: string;
-  current: number;
-  deleted: number;
+  total_games: number;
+  games: number;
+  wins: number;
+  losses: number;
+  confwins: number;
+  conflosses: number;
+  neutralwins: number;
+  neutrallosses: number;
+  homewins: number;
+  homelosses: number;
+  roadwins: number;
+  roadlosses: number;
+  streak: number;
+  win_margin: number;
+  loss_margin: number;
+  confwin_margin: number;
+  confloss_margin: number;
+  fatigue: number;
+  desperation: number;
+  over_confidence: number;
+  minutes_played: number;
+  field_goal: number;
+  field_goal_attempts: number;
+  field_goal_percentage: number;
+  two_point_field_goal: number;
+  two_point_field_goal_attempts: number;
+  two_point_field_goal_percentage: number;
+  three_point_field_goal: number;
+  three_point_field_goal_attempts: number;
+  three_point_field_goal_percentage: number;
+  free_throws: number;
+  free_throw_attempts: number;
+  free_throw_percentage: number;
+  offensive_rebounds: number;
+  defensive_rebounds: number;
+  total_rebounds: number;
+  assists: number;
+  steals: number;
+  blocks: number;
+  turnovers: number;
+  fouls: number;
+  points: number;
+  possessions: number;
+  pace: number;
+  offensive_rating: number;
+  defensive_rating: number;
+  efficiency_rating: number;
+  adjusted_efficiency_rating: number;
+  opponent_field_goal: number;
+  opponent_field_goal_attempts: number;
+  opponent_field_goal_percentage: number;
+  opponent_two_point_field_goal: number;
+  opponent_two_point_field_goal_attempts: number;
+  opponent_two_point_field_goal_percentage: number;
+  opponent_three_point_field_goal: number;
+  opponent_three_point_field_goal_attempts: number;
+  opponent_three_point_field_goal_percentage: number;
+  opponent_free_throws: number;
+  opponent_free_throw_attempts: number;
+  opponent_free_throw_percentage: number;
+  opponent_offensive_rebounds: number;
+  opponent_defensive_rebounds: number;
+  opponent_total_rebounds: number;
+  opponent_assists: number;
+  opponent_steals: number;
+  opponent_blocks: number;
+  opponent_turnovers: number;
+  opponent_fouls: number;
+  opponent_points: number;
+  opponent_possessions: number;
+  opponent_pace: number;
+  opponent_offensive_rating: number;
+  opponent_defensive_rating: number;
+  opponent_efficiency_rating: number;
+  elo_sos: number;
+  wins_rank: number;
+  losses_rank: number;
+  confwins_rank: number;
+  conflosses_rank: number;
+  neutralwins_rank: number;
+  neutrallosses_rank: number;
+  homewins_rank: number;
+  homelosses_rank: number;
+  roadwins_rank: number;
+  roadlosses_rank: number;
+  streak_rank: number;
+  win_margin_rank: number;
+  loss_margin_rank: number;
+  confwin_margin_rank: number;
+  confloss_margin_rank: number;
+  fatigue_rank: number;
+  desperation_rank: number;
+  over_confidence_rank: number;
+  minutes_played_rank: number;
+  field_goal_rank: number;
+  field_goal_attempts_rank: number;
+  field_goal_percentage_rank: number;
+  two_point_field_goal_rank: number;
+  two_point_field_goal_attempts_rank: number;
+  two_point_field_goal_percentage_rank: number;
+  three_point_field_goal_rank: number;
+  three_point_field_goal_attempts_rank: number;
+  three_point_field_goal_percentage_rank: number;
+  free_throws_rank: number;
+  free_throw_attempts_rank: number;
+  free_throw_percentage_rank: number;
+  offensive_rebounds_rank: number;
+  defensive_rebounds_rank: number;
+  total_rebounds_rank: number;
+  assists_rank: number;
+  steals_rank: number;
+  blocks_rank: number;
+  turnovers_rank: number;
+  fouls_rank: number;
+  points_rank: number;
+  possessions_rank: number;
+  pace_rank: number;
+  offensive_rating_rank: number;
+  defensive_rating_rank: number;
+  efficiency_rating_rank: number;
+  adjusted_efficiency_rating_rank: number;
+  opponent_field_goal_rank: number;
+  opponent_field_goal_attempts_rank: number;
+  opponent_field_goal_percentage_rank: number;
+  opponent_two_point_field_goal_rank: number;
+  opponent_two_point_field_goal_attempts_rank: number;
+  opponent_two_point_field_goal_percentage_rank: number;
+  opponent_three_point_field_goal_rank: number;
+  opponent_three_point_field_goal_attempts_rank: number;
+  opponent_three_point_field_goal_percentage_rank: number;
+  opponent_free_throws_rank: number;
+  opponent_free_throw_attempts_rank: number;
+  opponent_free_throw_percentage_rank: number;
+  opponent_offensive_rebounds_rank: number;
+  opponent_defensive_rebounds_rank: number;
+  opponent_total_rebounds_rank: number;
+  opponent_assists_rank: number;
+  opponent_steals_rank: number;
+  opponent_blocks_rank: number;
+  opponent_turnovers_rank: number;
+  opponent_fouls_rank: number;
+  opponent_points_rank: number;
+  opponent_possessions_rank: number;
+  opponent_pace_rank: number;
+  opponent_offensive_rating_rank: number;
+  opponent_defensive_rating_rank: number;
+  opponent_efficiency_rating_rank: number;
+  elo_sos_rank: number;
 }
 
 export type StatisticRankings = {[statistic_ranking_id: string]: StatisticRanking};
 
-export interface PlayerStatisticRanking {
-  player_statistic_ranking_id: string;
-  organization_id: string;
-  division_id: string;
-  sport_player_statistic_id: string;
-  season: number;
-  team_id: string;
-  player_id: string;
-  player_team_season_id: string;
+export interface PlayerStatisticRanking extends BasePlayerStatisticRanking {
   rating: number;
   max: number;
   rank: number;
@@ -385,20 +366,11 @@ export interface PlayerStatisticRanking {
   block_percentage_rank: number;
   turnover_percentage_rank: number;
   usage_percentage_rank: number;
-  guid: string;
-  current: number;
-  deleted: number;
 }
 
 export type PlayerStatisticRankings = {[player_statistic_ranking_id: string]: PlayerStatisticRanking};
 
-export interface ConferenceStatisticRanking {
-  conference_statistic_ranking_id: string;
-  organization_id: string;
-  division_id: string;
-  sport_conference_statistic_id: string;
-  season: number;
-  conference_id: string;
+export interface ConferenceStatisticRanking extends BaseConferenceStatisticRanking {
   rating: number;
   rank: number;
   rank_delta_one: number;
@@ -545,20 +517,11 @@ export interface ConferenceStatisticRanking {
   opponent_defensive_rating_rank: number;
   opponent_efficiency_rating_rank: number;
   elo_sos_rank: number;
-  guid: string;
-  date_of_rank: string;
-  current: number;
-  deleted: number;
 }
 
 export type ConferenceStatisticRankings = {[conference_statistic_ranking_id: string]: ConferenceStatisticRanking};
 
-export interface LeagueStatisticRanking {
-  league_statistic_ranking_id: string;
-  organization_id: string;
-  division_id: string;
-  sport_league_statistic_id: string;
-  season: number;
+export interface LeagueStatisticRanking extends BaseLeagueStatisticRanking {
   rating: number;
   elo: number;
   games: number;
@@ -634,21 +597,11 @@ export interface LeagueStatisticRanking {
   opponent_offensive_rating: number;
   opponent_defensive_rating: number;
   opponent_efficiency_rating: number;
-  guid: string;
-  date_of_rank: string;
-  current: number;
-  deleted: number;
 }
 
 export type LeagueStatisticRankings = {[league_statistic_ranking_id: string]: LeagueStatisticRanking};
 
-export interface LeaguePlayerStatisticRanking {
-  league_player_statistic_id: string;
-  organization_id: string;
-  division_id: string;
-  sport_league_player_statistic_id: string;
-  season: number;
-  date_of_rank: string;
+export interface LeaguePlayerStatisticRanking extends BaseLeaguePlayerStatisticRanking {
   rating: number;
   elo: number;
   games: number;
@@ -691,25 +644,10 @@ export interface LeaguePlayerStatisticRanking {
   usage_percentage: number;
   team_possessions: number;
   team_pace: number;
-  guid: string;
-  current: number;
-  deleted: number;
 }
 
 export type LeaguePlayerStatisticRankings = {[league_player_statistic_id: string]: LeaguePlayerStatisticRanking};
 
-
-export interface TransferPlayerSeason {
-  cbb_transfer_player_season_id: string;
-  player_id: string;
-  season: number;
-  committed_team_id: string | null;
-  committed: number;
-  guid: string;
-  deleted: number;
-}
-
-export type TransferPlayerSeasons = {[coach_team_season_id: string]: TransferPlayerSeason};
 
 export interface ConferencePlayerStatisticRanking extends BaseConferencePlayerStatisticRanking {
   basketball_conference_player_statistic_id: string;
@@ -782,6 +720,18 @@ export interface ConferencePlayerStatisticRanking extends BaseConferencePlayerSt
 export type ConferencePlayerStatisticRankings = {
   [conference_player_statistic_id: string]: ConferencePlayerStatisticRanking;
 }
+
+export interface TransferPlayerSeason {
+  cbb_transfer_player_season_id: string;
+  player_id: string;
+  season: number;
+  committed_team_id: string | null;
+  committed: number;
+  guid: string;
+  deleted: number;
+}
+
+export type TransferPlayerSeasons = {[coach_team_season_id: string]: TransferPlayerSeason};
 
 export type RankingTable = (StatisticRanking | PlayerStatisticRanking | ConferenceStatisticRanking | CoachStatisticRanking) & {
   name: string;

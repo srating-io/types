@@ -1,4 +1,4 @@
-import { StatisticRanking } from './basketball.ts';
+
 
 export interface Organization {
   organization_id: string;
@@ -696,12 +696,94 @@ export interface Boxscore {
   sport_boxscore_id: string;
   season: number;
   final: number;
+  guid: string;
+  deleted: number;
 }
 
 export type Boxscores = {[boxscore_id: string]: Boxscore};
 
+export interface PlayerBoxscore {
+  player_boxscore_id: string;
+  organization_id: string;
+  division_id: string;
+  game_id: string;
+  team_id: string;
+  player_id: string;
+  sport_player_boxscore_id: string;
+  season: number;
+  final: number;
+  guid: string;
+  deleted: number;
+}
 
-export interface BaseConferencePlayerStatisticRanking {
+export type PlayerBoxscores = {[player_boxscore_id: string]: PlayerBoxscore};
+
+export interface PlaybyPlay {
+  play_by_play_id: string;
+  organization_id: string;
+  division_id: string;
+  game_id: string;
+  sport_play_by_play_id: string;
+  team_id: string;
+}
+
+export type PlaybyPlays = {[play_by_play_id: string]: PlaybyPlay};
+
+export interface StatisticRanking {
+  statistic_ranking_id: string;
+  organization_id: string;
+  division_id: string;
+  season: number;
+  team_id: string;
+  parent_statistic_ranking_id: string | null;
+	last_game_id: string;
+  sport_statistic_id: string;
+  guid: string;
+  date_of_rank: string;
+  updated_at: string;
+  current: number;
+  deleted: number;
+}
+
+export type StatisticRankings = {[statistic_ranking_id: string]: StatisticRanking};
+
+export interface PlayerStatisticRanking {
+  player_statistic_ranking_id: string;
+  organization_id: string;
+  division_id: string;
+  season: number;
+  team_id: string;
+  player_id: string;
+  player_team_season_id: string;
+  parent_player_statistic_ranking_id: string | null;
+  sport_player_statistic_id: string;
+  guid: string;
+  date_of_rank: string;
+	updated_at: string;
+  current: number;
+  deleted: number;
+}
+
+export type PlayerStatisticRankings = {[player_statistic_ranking_id: string]: PlayerStatisticRanking};
+
+export interface ConferenceStatisticRanking {
+  conference_statistic_ranking_id: string;
+  organization_id: string;
+  division_id: string;
+  conference_id: string;
+  season: number;
+  parent_conference_statistic_ranking_id: string;
+  sport_conference_statistic_id: string;
+  guid: string;
+  date_of_rank: string;
+  updated_at: string;
+  current: number;
+  deleted: number;
+}
+
+export type ConferenceStatisticRankings = {[conference_statistic_ranking_id: string]: ConferenceStatisticRanking};
+
+export interface ConferencePlayerStatisticRanking {
   conference_player_statistic_ranking_id: string;
 	organization_id: string;
 	division_id: string;
@@ -715,6 +797,36 @@ export interface BaseConferencePlayerStatisticRanking {
 	deleted: number;   
 }
 
-export type BaseConferencePlayerStatisticRankings = {
-  [conference_player_statistic_ranking_id: string]: BaseConferencePlayerStatisticRanking;
+export type ConferencePlayerStatisticRankings = {
+  [conference_player_statistic_ranking_id: string]: ConferencePlayerStatisticRanking;
 }
+
+export interface LeagueStatisticRanking {
+  league_statistic_ranking_id: string;
+  organization_id: string;
+  division_id: string;
+  sport_league_statistic_id: string;
+  season: number;
+  guid: string;
+  date_of_rank: string;
+  updated_at: string;
+  current: number;
+  deleted: number;
+}
+
+export type LeagueStatisticRankings = {[league_statistic_ranking_id: string]: LeagueStatisticRanking};
+
+export interface LeaguePlayerStatisticRanking {
+  league_player_statistic_id: string;
+  organization_id: string;
+  division_id: string;
+  sport_league_player_statistic_id: string;
+  season: number;
+  date_of_rank: string;
+  updated_at: string;
+  guid: string;
+  current: number;
+  deleted: number;
+}
+
+export type LeaguePlayerStatisticRankings = {[league_player_statistic_id: string]: LeaguePlayerStatisticRanking};
