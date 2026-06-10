@@ -779,6 +779,9 @@ export interface ConferencePlayerStatisticRanking extends BaseConferencePlayerSt
   deleted: number;
 }
 
+export type ConferencePlayerStatisticRankings = {
+  [conference_player_statistic_id: string]: ConferencePlayerStatisticRanking;
+}
 
 export type RankingTable = (StatisticRanking | PlayerStatisticRanking | ConferenceStatisticRanking | CoachStatisticRanking) & {
   name: string;
