@@ -198,6 +198,19 @@ export interface TeamSeasonConference {
 
 export type TeamSeasonConferences = {[team_season_conference_id: string]: TeamSeasonConference};
 
+
+export interface ConferenceDivisionSeason {
+  conference_division_season_id: string;
+	organization_id: string;
+	division_id: string;
+	conference_id: string;
+	season: number;
+	guid: string;
+  deleted: number;
+}
+
+export type ConferenceDivisionSeasons = {[conference_division_season_id: string]: ConferenceDivisionSeason};
+
 export interface Prediction {
   prediction_id: string;
   game_id: string;
@@ -237,9 +250,6 @@ export interface Game {
   boxscore: number;
   guid: string;
   deleted: number;
-  teams: Team;
-  prediction: Prediction;
-  odds: Odds;
 }
 
 export type Games = {[game_id: string]: Game};
