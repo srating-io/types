@@ -160,6 +160,7 @@ export interface StatisticRanking extends BaseStatisticRanking {
   rank_delta_one: number;
   rank_delta_seven: number;
   max: number;
+  elo: number;
   elo_rank: number;
   ap_rank: number;
   coaches_rank: number;

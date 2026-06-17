@@ -104,6 +104,7 @@ export interface StatisticRanking extends BaseStatisticRanking {
   rank: number;
   rank_delta_one: number;
   rank_delta_seven: number;
+  elo: number;
   elo_rank: number;
   kenpom_rank: number;
   srs_rank: number;
