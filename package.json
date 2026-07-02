@@ -1,18 +1,24 @@
 {
   "name": "@srating-io/types",
   "private": false,
-  "version": "0.0.10",
+  "version": "1.0.0",
   "description": "srating.io shared TypeScript types for GUI and API",
   "type": "module",
-  "main": "",
+  "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
   "scripts": {
     "clean": "rm -rf dist",
     "prebuild": "node scripts/generate-exports.js",
-    "build": "npm run clean && tsc",
+    "build": "npm run clean && tsc && echo 'export {};' > dist/index.js",
     "prepublishOnly": "npm run build"
   },
   "publishConfig": {
