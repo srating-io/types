@@ -233,6 +233,7 @@ export interface Game {
   organization_id: string;
   division_id: string;
   season: number;
+  game_type_terminology_id: string | null;
   away_team_id: string;
   home_team_id: string;
   network: string;
