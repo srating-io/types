@@ -104,6 +104,7 @@ export interface ApiKey {
   request_limit: number;
   read: number;
   write: number;
+  query: number;
   expires: number;
   last_reset: number;
   guid: string;
