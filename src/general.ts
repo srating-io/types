@@ -162,6 +162,7 @@ export type Notifications = {[notification_id: string]: Notification};
 
 export interface Conference {
   conference_id: string;
+  parent_conference_id: string;
   code: string;
   name: string;
   guid: string;
