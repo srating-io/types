@@ -426,6 +426,7 @@ export type Bookmakers = {[key: string]: Bookmaker};
 
 export interface CoachStatisticRanking {
   coach_statistic_ranking_id: string;
+  parent_coach_statistic_ranking_id: string;
   organization_id: string;
   division_id: string;
   coach_statistic_id: string;
