@@ -358,6 +358,8 @@ export interface PlayerTeamSeason {
   weight: string;
   number: string;
   class_year: string;
+  start_date: string;
+  end_date: string;
   guid: string;
   deleted: number;
 }
