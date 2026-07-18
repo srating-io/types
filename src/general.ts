@@ -632,6 +632,7 @@ export interface FantasyBracketSlot {
   picked_first_team_id: string | null;
   picked_second_team_id: string | null;
   picked_winner_team_id: string | null;
+  tie_breaker_total_score: number | null;
   game_id: string | null;
   region: string;
   round: number;
