@@ -246,6 +246,7 @@ export interface Game {
   status: string;
   current_period: string;
   clock: string;
+  clock_last_updated_at: string;
   start_date: string;
   start_datetime: string;
   start_timestamp: number;
@@ -386,7 +387,7 @@ export interface GamePlayer {
   player_id: string;
   start: string;
   stop: string | null;
-  period: number;
+  period: string;
   date_of_entry: string;
 }
 
