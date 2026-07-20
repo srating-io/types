@@ -196,6 +196,8 @@ export interface TeamSeasonConference {
   season: number;
   conference_id: string;
   division_id: string;
+  name: string;
+  code: string;
   guid: string;
   deleted: number;
 }
