@@ -180,9 +180,6 @@ export interface Team {
   alt_name: string;
   primary_color: string;
   secondary_color: string;
-  conference_id?: string;
-  division_id?: string;
-  stats?: StatisticRanking;
   guid: string;
   deleted: number;
 }
