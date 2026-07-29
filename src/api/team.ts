@@ -13,6 +13,32 @@
  */
 
 import { getGamesResults } from "./game.ts";
+import {
+  Team,
+} from '../general.ts';
+
+export type loadTeamArguments = {
+  organization_id: string;
+  division_id: string;
+  team_id: string;
+  season: number;
+}
+
+export type loadTeamResults = Team & {
+  conference_id?: string;
+  stats?: {
+    statistic_ranking_id: string;
+    rank: number;
+    elo_rank: number;
+    wins: number;
+    losses: number;
+    kenpom_rank?: number;
+    srs_rank?: number;
+    ap_rank?: number;
+    coaches_rank?: number;
+    net_rank?: number;
+  }
+}
 
 export type getScheduleArguments = {
   organization_id: string;

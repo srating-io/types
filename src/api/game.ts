@@ -19,6 +19,16 @@ import {
   Prediction,
 } from '../general.ts';
 
+export type GameWithOddsAndTeams = Game & {
+  odds: {
+    pre: null | Odds;
+    live: null | Odds;
+  },
+  teams: {
+    [team_id: string]: Team & { conference_id?: string };
+  };
+}
+
 export type getGamesArguments = {
   organization_id?: string; // todo make required
   division_id?: string; // todo make required
@@ -30,15 +40,7 @@ export type getGamesArguments = {
 }
 
 export type getGamesResults = {
-  [game_id: string]: Game & {
-    odds: {
-      pre: null | Odds;
-      live: null | Odds;
-    },
-    teams: {
-      [team_id: string]: Team & { conference_id?: string };
-    };
-  }
+  [game_id: string]: GameWithOddsAndTeams;
 }
 
 export type getScoresArguments = {
