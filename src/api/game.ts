@@ -15,7 +15,7 @@
 import {
   Game,
   Odds,
-  Teams,
+  Team,
   Prediction,
 } from '../general.ts';
 
@@ -35,7 +35,9 @@ export type getGamesResults = {
       pre: null | Odds;
       live: null | Odds;
     },
-    teams: Teams;
+    teams: {
+      [team_id: string]: Team & { conference_id?: string };
+    };
   }
 }
 
