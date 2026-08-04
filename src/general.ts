@@ -851,7 +851,7 @@ export interface LeaguePlayerStatisticRanking {
   league_player_statistic_ranking_id: string;
   organization_id: string;
   division_id: string;
-  sport_league_player_statistic_ranking_id: string;
+  sport_league_player_statistic_id: string;
   season: number;
   date_of_rank: string;
   updated_at: string;
