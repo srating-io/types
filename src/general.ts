@@ -848,10 +848,10 @@ export interface LeagueStatisticRanking {
 export type LeagueStatisticRankings = {[league_statistic_ranking_id: string]: LeagueStatisticRanking};
 
 export interface LeaguePlayerStatisticRanking {
-  league_player_statistic_id: string;
+  league_player_statistic_ranking_id: string;
   organization_id: string;
   division_id: string;
-  sport_league_player_statistic_id: string;
+  sport_league_player_statistic_ranking_id: string;
   season: number;
   date_of_rank: string;
   updated_at: string;
@@ -860,4 +860,4 @@ export interface LeaguePlayerStatisticRanking {
   deleted: number;
 }
 
-export type LeaguePlayerStatisticRankings = {[league_player_statistic_id: string]: LeaguePlayerStatisticRanking};
+export type LeaguePlayerStatisticRankings = {[league_player_statistic_ranking_id: string]: LeaguePlayerStatisticRanking};
