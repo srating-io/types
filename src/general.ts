@@ -303,7 +303,6 @@ export interface CoachElo {
   current: number;
   date_of_entry: string;
   updated_at: string;
-  guid: string;
   deleted: number;
 }
 
@@ -319,7 +318,6 @@ export interface Elo {
   current: number;
   date_of_entry: string;
   updated_at: string;
-  guid: string;
   deleted: number;
 }
 
@@ -336,7 +334,6 @@ export interface PlayerElo {
   current: number;
   date_of_entry: string;
   updated_at: string;
-  guid: string;
   deleted: number;
 }
 
@@ -489,7 +486,6 @@ export interface CoachStatisticRanking {
   home_win_percentage_rank: number;
   road_win_percentage_rank: number;
   neutral_win_percentage_rank: number;
-  guid: string;
   date_of_rank: string;
   current: number;
   deleted: number;
@@ -727,7 +723,6 @@ export interface Boxscore {
   sport_boxscore_id: string;
   season: number;
   final: number;
-  guid: string;
   deleted: number;
 }
 
@@ -743,7 +738,6 @@ export interface PlayerBoxscore {
   sport_player_boxscore_id: string;
   season: number;
   final: number;
-  guid: string;
   deleted: number;
 }
 
@@ -769,7 +763,6 @@ export interface StatisticRanking {
   parent_statistic_ranking_id: string | null;
 	last_game_id: string;
   sport_statistic_id: string;
-  guid: string;
   date_of_rank: string;
   updated_at: string;
   current: number;
@@ -787,8 +780,8 @@ export interface PlayerStatisticRanking {
   player_id: string;
   player_team_season_id: string;
   parent_player_statistic_ranking_id: string | null;
+  last_game_id: string;
   sport_player_statistic_id: string;
-  guid: string;
   date_of_rank: string;
 	updated_at: string;
   current: number;
@@ -805,7 +798,6 @@ export interface ConferenceStatisticRanking {
   season: number;
   parent_conference_statistic_ranking_id: string;
   sport_conference_statistic_id: string;
-  guid: string;
   date_of_rank: string;
   updated_at: string;
   current: number;
@@ -824,7 +816,6 @@ export interface ConferencePlayerStatisticRanking {
   date_of_rank: string;
 	updated_at: string;
 	current: number;
-  guid: string;
 	deleted: number;   
 }
 
@@ -838,7 +829,6 @@ export interface LeagueStatisticRanking {
   division_id: string;
   sport_league_statistic_id: string;
   season: number;
-  guid: string;
   date_of_rank: string;
   updated_at: string;
   current: number;
@@ -855,7 +845,6 @@ export interface LeaguePlayerStatisticRanking {
   season: number;
   date_of_rank: string;
   updated_at: string;
-  guid: string;
   current: number;
   deleted: number;
 }
