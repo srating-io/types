@@ -20,8 +20,11 @@ function getFiles(dir, allFiles = []) {
         .replace(/\\/g, '/'); // Fix Windows backslashes
       
       const moduleName = path.basename(file, '.ts');
-      // Capitalize the first letter for the Namespace (e.g., basketball -> Basketball)
-      const namespace = moduleName.charAt(0).toUpperCase() + moduleName.slice(1);
+      // PascalCase the Namespace (e.g., basketball -> Basketball, coach_statistic_ranking -> CoachStatisticRanking)
+      const namespace = moduleName
+        .split('_')
+        .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+        .join('');
 
       allFiles.push(`export * as ${namespace} from './${relativePath}';`);
     }
