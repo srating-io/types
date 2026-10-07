@@ -1,12 +1,14 @@
 // Auto-generated barrel file
 
 export * as ApiKey from './api/api_key.ts';
+export * as AuditGui from './api/audit_gui.ts';
 export * as Billing from './api/billing.ts';
 export * as Boxscore from './api/boxscore.ts';
 export * as CoachStatisticRanking from './api/coach_statistic_ranking.ts';
 export * as Conference from './api/conference.ts';
 export * as ConferencePlayerStatisticRanking from './api/conference_player_statistic_ranking.ts';
 export * as ConferenceStatisticRanking from './api/conference_statistic_ranking.ts';
+export * as Dashboard from './api/dashboard.ts';
 export * as FantasyBracketSlot from './api/fantasy_bracket_slot.ts';
 export * as FantasyDraftOrder from './api/fantasy_draft_order.ts';
 export * as FantasyEntry from './api/fantasy_entry.ts';
@@ -32,6 +34,7 @@ export * as StatisticRanking from './api/statistic_ranking.ts';
 export * as Team from './api/team.ts';
 export * as User from './api/user.ts';
 export * as UserPaymentToken from './api/user_payment_token.ts';
+export * as Audit from './audit.ts';
 export * as Auth from './auth.ts';
 export * as Basketball from './basketball.ts';
 export * as Fantasy from './fantasy.ts';

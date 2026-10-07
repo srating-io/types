@@ -17,6 +17,7 @@ export interface User {
   username: string;
   display_name: string | null;
   stripe_customer: string;
+  role_type_terminology_id: string | null;
   default_user_payment_token_id: string | null;
   date_of_entry: string;
   updated_at: string;
