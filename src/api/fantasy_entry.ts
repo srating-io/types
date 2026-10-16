@@ -22,7 +22,9 @@ import {
   Teams,
 } from '../general.ts';
 import {
+  FantasyEntry,
   FantasyEntrys,
+  FantasyGroup,
   FantasyGroupUsers,
   FantasyBracketSlots,
   FantasyEntryPlayers,
@@ -50,6 +52,8 @@ export type loadArguments = {
 }
 
 export type loadResults = { error: string } | {
+  fantasy_entry: FantasyEntry;
+  fantasy_group: FantasyGroup;
   fantasy_entry_players: FantasyEntryPlayers | {};
   fantasy_bracket_slots: FantasyBracketSlots;
   bracket_teams: BracketTeams;
