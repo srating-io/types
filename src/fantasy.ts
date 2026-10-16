@@ -27,6 +27,24 @@ export interface FantasyPayoutRule {
 
 export type FantasyPayoutRules = {[fantasy_payout_rule_id: string]: FantasyPayoutRule};
 
+export interface FantasyPayout {
+  fantasy_payout_id: string;
+  fantasy_group_id: string;
+  fantasy_entry_id: string;
+  user_id: string;
+  rank: number | null;
+  amount: number;
+  method: string | null;
+  reference: string | null;
+  paid_at: string | null;
+  note: string | null;
+  date_of_entry: string;
+  guid: string;
+  deleted: number;
+}
+
+export type FantasyPayouts = {[fantasy_payout_id: string]: FantasyPayout};
+
 export interface FantasyGroupInvite {
   fantasy_group_invite_id: string;
   fantasy_group_id: string;
@@ -96,6 +114,7 @@ export interface FantasyGroup {
   notified_15_mins: number,
   notified_finished: number,
   draft_time_per_user_in_seconds: number | null,
+  draft_order_seed: string | null,
   date_of_entry: string;
   guid: string;
   deleted: number;
