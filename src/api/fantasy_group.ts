@@ -35,6 +35,27 @@ export type createGroupArguments = Partial<Omit<FantasyGroup, 'fantasy_group_id'
 
 export type createGroupResults = { error: string } | FantasyGroup;
 
+/**
+ * What an owner may change after the fact. Deliberately narrow: the sport, season, league type,
+ * draft style, entry fee and payout rule are what people join and pay on, so they are fixed.
+ * Omitting a key leaves it alone.
+ */
+export type updateGroupArguments = {
+  fantasy_group_id: string;
+  name?: string;
+  start_date?: string | null;
+  end_date?: string | null;
+  draft_start_datetime?: string | null;
+  draft_time_per_user_in_seconds?: number | null;
+  cap?: number;
+  entries?: number | null;
+  entries_per_user?: number;
+  open_invites?: number;
+  private?: number;
+}
+
+export type updateGroupResults = { error: string } | FantasyGroup;
+
 export type sendInvitesArguments = {
   fantasy_group_id: string;
   emails: string;

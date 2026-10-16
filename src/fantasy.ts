@@ -88,6 +88,7 @@ export type FantasyGroupComments = {[fantasy_group_comment_id: string]: FantasyG
 
 export interface FantasyGroup {
   fantasy_group_id: string;
+  owner_user_id: string;
   organization_id: string;
   division_id: string;
   season: number;
