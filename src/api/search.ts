@@ -27,6 +27,7 @@ export interface SearchTeamResult {
   code: string;
   name: string;
   alt_name: string | null;
+  slug: string | null;
   primary_color: string | null;
 }
 
@@ -34,6 +35,7 @@ export interface SearchPlayerResult {
   player_id: string;
   first_name: string;
   last_name: string;
+  slug: string | null;
   begin: number;
   end: number;
   relevance_score: number;
@@ -43,6 +45,7 @@ export interface SearchCoachResult {
   coach_id: string;
   first_name: string;
   last_name: string;
+  slug: string | null;
   begin: number;
   end: number;
 }

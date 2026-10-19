@@ -775,8 +775,16 @@ export type RankingTable = (StatisticRanking | PlayerStatisticRanking | Conferen
   committed?: boolean;
   committed_team_id?: string;
   committed_team_name?: string;
+  committed_team_slug?: string | null;
   committed_conference_id?: string;
   team_name?: string;
+  /**
+   * The slugs the table's links are built from. Decorations added by the ranking endpoint, not
+   * columns on the ranking row -- without them every link would point at an id url and 308.
+   */
+  slug?: string | null;
+  team_slug?: string | null;
+  conference_slug?: string | null;
   player?: Player;
   player_team_season?: PlayerTeamSeason;
 }
