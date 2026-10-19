@@ -30,6 +30,7 @@ export * as Ranking from './api/ranking.ts';
 export * as Search from './api/search.ts';
 export * as Secret from './api/secret.ts';
 export * as Session from './api/session.ts';
+export * as Sitemap from './api/sitemap.ts';
 export * as StatisticRanking from './api/statistic_ranking.ts';
 export * as Team from './api/team.ts';
 export * as User from './api/user.ts';

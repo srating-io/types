@@ -47,11 +47,32 @@ export interface Terminology {
 
 export type Terminologies = {[terminology_id: string]: Terminology};
 
+/**
+ * A slug an entity used to answer to. A slug is immutable once assigned, so this only fills up
+ * from a game whose start_date moved and from a manual rename -- and a hit here is a 301, never a
+ * render.
+ */
+export interface SlugRedirect {
+  slug_redirect_id: string;
+  type: 'team' | 'player' | 'coach' | 'conference' | 'game';
+  /**
+   * Set for a game, null otherwise, matching how the slug itself is scoped.
+   */
+  organization_id: string | null;
+  slug: string;
+  entity_id: string;
+  guid: string;
+  deleted: number;
+}
+
+export type SlugRedirects = {[slug_redirect_id: string]: SlugRedirect};
+
 export interface Conference {
   conference_id: string;
   parent_conference_id: string;
   code: string;
   name: string;
+  slug: string;
   guid: string;
   inactive: number;
   deleted: number;
@@ -65,6 +86,7 @@ export interface Team {
   code: string;
   name: string;
   alt_name: string;
+  slug: string;
   primary_color: string;
   secondary_color: string;
   guid: string;
@@ -139,6 +161,7 @@ export interface Game {
   start_date: string;
   start_datetime: string;
   start_timestamp: number;
+  slug: string;
   attendance: number;
   neutral_site: number;
   is_conf_game: number;
@@ -153,6 +176,7 @@ export interface Coach {
   coach_id: string;
   first_name: string;
   last_name: string;
+  slug: string;
   deleted: number;
 }
 
@@ -221,6 +245,7 @@ export interface Player {
   player_id: string;
   first_name: string;
   last_name: string;
+  slug: string;
   position: string;
   height: string;
   weight: string;
