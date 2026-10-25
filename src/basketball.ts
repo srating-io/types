@@ -29,6 +29,7 @@ import {
 
 
 export interface Boxscore extends BaseBoxscore {
+  basketball_boxscore_id: string;
   minutes_played: number;
   field_goal: number;
   field_goal_attempts: number;
@@ -58,6 +59,7 @@ export type Boxscores = {[boxscore_id: string]: Boxscore};
 
 
 export interface PlayerBoxscore extends BasePlayerBoxscore {
+  basketball_player_boxscore_id: string;
   first_name: string;
   last_name: string;
   position: string;
@@ -83,12 +85,14 @@ export interface PlayerBoxscore extends BasePlayerBoxscore {
   turnovers: number;
   fouls: number;
   points: number;
+  plus_minus: number;
 }
 
 export type PlayerBoxscores = {[player_boxscore_id: string]: PlayerBoxscore};
 
 
 export interface PlaybyPlay extends BasePlaybyPlay {
+  basketball_play_by_play_id: string;
   team_id: string;
   current_period: string;
   clock: string;
@@ -112,6 +116,7 @@ export type PlaybyPlays = {[play_by_play_id: string]: PlaybyPlay};
 
 
 export interface StatisticRanking extends BaseStatisticRanking {
+  basketball_statistic_id: string;
   max: number;
   rating: number;
   rank: number;
@@ -199,6 +204,9 @@ export interface StatisticRanking extends BaseStatisticRanking {
   opponent_defensive_rating: number;
   opponent_efficiency_rating: number;
   elo_sos: number;
+  weighted_height_average: number;
+  elite_length_z_score: number;
+  height_consistency: number;
   wins_rank: number;
   losses_rank: number;
   confwins_rank: number;
@@ -272,31 +280,48 @@ export interface StatisticRanking extends BaseStatisticRanking {
   opponent_defensive_rating_rank: number;
   opponent_efficiency_rating_rank: number;
   elo_sos_rank: number;
+  weighted_height_average_rank: number;
+  elite_length_z_score_rank: number;
+  height_consistency_rank: number;
 }
 
 export type StatisticRankings = {[statistic_ranking_id: string]: StatisticRanking};
 
 export interface PlayerStatisticRanking extends BasePlayerStatisticRanking {
+  basketball_player_statistic_id: string;
   rating: number;
   max: number;
   rank: number;
   rank_delta_one: number;
   rank_delta_seven: number;
+  elo: number;
   elo_rank: number;
+  max_elo: number;
+  max_elo_rank: number;
   games: number;
+  wins: number;
+  losses: number;
   minutes_played: number;
   minutes_per_game: number;
   field_goal: number;
+  field_goal_per_game: number;
   field_goal_attempts: number;
+  field_goal_attempts_per_game: number;
   field_goal_percentage: number;
   two_point_field_goal: number;
+  two_point_field_goal_per_game: number;
   two_point_field_goal_attempts: number;
+  two_point_field_goal_attempts_per_game: number;
   two_point_field_goal_percentage: number;
   three_point_field_goal: number;
+  three_point_field_goal_per_game: number;
   three_point_field_goal_attempts: number;
+  three_point_field_goal_attempts_per_game: number;
   three_point_field_goal_percentage: number;
   free_throws: number;
+  free_throws_per_game: number;
   free_throw_attempts: number;
+  free_throw_attempts_per_game: number;
   free_throw_percentage: number;
   offensive_rebounds: number;
   offensive_rebounds_per_game: number;
@@ -332,19 +357,31 @@ export interface PlayerStatisticRanking extends BasePlayerStatisticRanking {
   block_percentage: number;
   turnover_percentage: number;
   usage_percentage: number;
+  plus_minus: number;
+  games_rank: number;
+  wins_rank: number;
+  losses_rank: number;
   minutes_played_rank: number;
   minutes_per_game_rank: number;
   field_goal_rank: number;
+  field_goal_per_game_rank: number;
   field_goal_attempts_rank: number;
+  field_goal_attempts_per_game_rank: number;
   field_goal_percentage_rank: number;
   two_point_field_goal_rank: number;
+  two_point_field_goal_per_game_rank: number;
   two_point_field_goal_attempts_rank: number;
+  two_point_field_goal_attempts_per_game_rank: number;
   two_point_field_goal_percentage_rank: number;
   three_point_field_goal_rank: number;
+  three_point_field_goal_per_game_rank: number;
   three_point_field_goal_attempts_rank: number;
+  three_point_field_goal_attempts_per_game_rank: number;
   three_point_field_goal_percentage_rank: number;
   free_throws_rank: number;
+  free_throws_per_game_rank: number;
   free_throw_attempts_rank: number;
+  free_throw_attempts_per_game_rank: number;
   free_throw_percentage_rank: number;
   offensive_rebounds_rank: number;
   offensive_rebounds_per_game_rank: number;
@@ -380,11 +417,13 @@ export interface PlayerStatisticRanking extends BasePlayerStatisticRanking {
   block_percentage_rank: number;
   turnover_percentage_rank: number;
   usage_percentage_rank: number;
+  plus_minus_rank: number;
 }
 
 export type PlayerStatisticRankings = {[player_statistic_ranking_id: string]: PlayerStatisticRanking};
 
 export interface ConferenceStatisticRanking extends BaseConferenceStatisticRanking {
+  basketball_conference_statistic_id: string;
   rating: number;
   rank: number;
   rank_delta_one: number;
@@ -536,6 +575,7 @@ export interface ConferenceStatisticRanking extends BaseConferenceStatisticRanki
 export type ConferenceStatisticRankings = {[conference_statistic_ranking_id: string]: ConferenceStatisticRanking};
 
 export interface LeagueStatisticRanking extends BaseLeagueStatisticRanking {
+  basketball_league_statistic_id: string;
   rating: number;
   elo: number;
   games: number;
@@ -611,11 +651,15 @@ export interface LeagueStatisticRanking extends BaseLeagueStatisticRanking {
   opponent_offensive_rating: number;
   opponent_defensive_rating: number;
   opponent_efficiency_rating: number;
+  weighted_height_average: number;
+  elite_length_z_score: number;
+  height_consistency: number;
 }
 
 export type LeagueStatisticRankings = {[league_statistic_ranking_id: string]: LeagueStatisticRanking};
 
 export interface LeaguePlayerStatisticRanking extends BaseLeaguePlayerStatisticRanking {
+  basketball_league_player_statistic_id: string;
   rating: number;
 	elo: number;
 	games: number;
@@ -750,7 +794,6 @@ export interface ConferencePlayerStatisticRanking extends BaseConferencePlayerSt
   turnover_percentage: number;
   usage_percentage: number;
   plus_minus: number;
-  guid: string;
   deleted: number;
 }
 

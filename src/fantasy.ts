@@ -63,6 +63,7 @@ export interface FantasyGroupUser {
   fantasy_group_user_id: string;
   fantasy_group_id: string;
   user_id: string;
+  // not real columns -- attached from the joined user row where the member list is rendered
   email?: string;
   name?: string;
   date_of_entry: string;
@@ -140,6 +141,7 @@ export type FantasyEntrys = {[fantasy_entry_id: string]: FantasyEntry};
 
 export interface FantasyDraftOrder {
   fantasy_draft_order_id: string;
+  parent_fantasy_draft_order_id: string;
   child_fantasy_draft_order_id: string | null;
   fantasy_entry_id: string;
   fantasy_group_id: string;
@@ -183,6 +185,7 @@ export interface FantasyBracketSlot {
   picked_first_team_id: string | null;
   picked_second_team_id: string | null;
   picked_winner_team_id: string | null;
+  actual_winner_team_id: string | null;
   tie_breaker_total_score: number | null;
   game_id: string | null;
   region: string;
@@ -229,7 +232,6 @@ export interface FantasyEntryPlayerStatisticRanking {
   fantasy_entry_player_id: string;
   sport_player_statistic_id: string;
   date_of_rank: string;
-  date_of_entry: string;
   updated_at: string;
   current: number;
   guid: string;

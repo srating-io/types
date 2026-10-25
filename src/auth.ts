@@ -30,7 +30,9 @@ export type Users = {[user_id: string]: User};
 export interface Session {
   session_id: string;
   user_id: string;
+  date_of_entry: string;
   expires_at: string;
+  updated_at: string;
   guid: string;
   deleted: number;
 }
@@ -59,7 +61,7 @@ export interface Secret {
 export type Secrets = {[secret_id: string]: Secret};
 
 export interface ApiKey {
-  api_key_id: string;
+  api_key_id: number;
   key: string;
   user_id: string;
   subscription_id: string;
@@ -69,9 +71,8 @@ export interface ApiKey {
   write: number;
   hidden_access: number;
   rate_limiter: number;
-  query: number;
-  expires: number;
-  last_reset: number;
+  expires: string;
+  last_reset: string;
   guid: string;
   deleted: number;
 }

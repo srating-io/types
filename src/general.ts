@@ -128,8 +128,8 @@ export type ConferenceDivisionSeasons = {[conference_division_season_id: string]
 
 export interface Prediction {
   prediction_id: string;
+  organization_id: string;
   game_id: string;
-  season: number;
   home_percentage: number;
   away_percentage: number;
   home_score: number;
@@ -162,6 +162,7 @@ export interface Game {
   start_datetime: string;
   start_timestamp: number;
   slug: string;
+  updated_at: string;
   attendance: number;
   neutral_site: number;
   is_conf_game: number;
@@ -177,6 +178,7 @@ export interface Coach {
   first_name: string;
   last_name: string;
   slug: string;
+  guid: string;
   deleted: number;
 }
 
@@ -184,6 +186,7 @@ export type Coaches = {[coach_id: string]: Coach};
 
 export interface CoachTeamSeason {
   coach_team_season_id: string;
+  organization_id: string;
   coach_id: string;
   team_id: string;
   season: number;
@@ -197,6 +200,8 @@ export type CoachTeamSeasons = {[coach_team_season_id: string]: CoachTeamSeason}
 
 export interface CoachElo {
   coach_elo_id: string;
+  organization_id: string;
+  division_id: string;
   parent_coach_elo_id: string;
   coach_id: string;
   game_id: string;
@@ -212,6 +217,8 @@ export type CoachElos = {[coach_elo_id: string]: CoachElo};
 
 export interface Elo {
   elo_id: string;
+  organization_id: string;
+  division_id: string;
   parent_elo_id: string;
   team_id: string;
   game_id: string;
@@ -228,6 +235,8 @@ export type Elos = {[elo_id: string]: Elo};
 
 export interface PlayerElo {
   player_elo_id: string;
+  organization_id: string;
+  division_id: string;
   parent_player_elo_id: string;
   player_id: string;
   game_id: string;
@@ -255,6 +264,7 @@ export interface Player {
   draft_year?: string;
   draft_round?: string;
   draft_number?: string;
+  // not a real column on player -- copied from the current player_team_season row
   class_year?: string;
   guid: string;
   deleted: number;
@@ -291,6 +301,7 @@ export interface GamePulse {
   current_period: string;
   clock: string;
   date_of_entry: string;
+  deleted: number;
 }
 
 export type GamePulses = {[game_pulse_id: string]: GamePulse};
@@ -304,6 +315,8 @@ export interface GamePlayer {
   stop: string | null;
   period: string;
   date_of_entry: string;
+  guid: string;
+  deleted: number;
 }
 
 export type GamePlayers = {[game_player_id: string]: GamePlayer};
@@ -348,6 +361,7 @@ export interface CoachStatisticRanking {
   season: number;
   coach_id: string;
   rating: number;
+  max: number;
   rank: number;
   rank_delta_one: number;
   rank_delta_seven: number;
@@ -393,6 +407,7 @@ export interface CoachStatisticRanking {
   road_win_percentage_rank: number;
   neutral_win_percentage_rank: number;
   date_of_rank: string;
+  updated_at: string;
   current: number;
   deleted: number;
 }
@@ -423,6 +438,7 @@ export interface BracketTeam {
   seed: number;
   current: number;
   predicted: number;
+  is_play_in: number;
   date_of_entry: string;
   guid: string;
   deleted: number;
@@ -465,7 +481,7 @@ export interface PlaybyPlay {
   division_id: string;
   game_id: string;
   sport_play_by_play_id: string;
-  team_id: string;
+  deleted: number;
 }
 
 export type PlaybyPlays = {[play_by_play_id: string]: PlaybyPlay};
@@ -499,8 +515,10 @@ export interface PlayerStatisticRanking {
   last_game_id: string;
   sport_player_statistic_id: string;
   date_of_rank: string;
-	updated_at: string;
+  updated_at: string;
   current: number;
+  career: number;
+  career_active: number;
   deleted: number;
 }
 

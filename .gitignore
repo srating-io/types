@@ -13,6 +13,9 @@ analyze
 
 # misc
 .DS_Store
+.claude
+
+# config
 .env
 .env.local
 .env.development.local

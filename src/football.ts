@@ -28,6 +28,7 @@ import {
 } from './general.ts';
 
 export interface Boxscore extends BaseBoxscore {
+  football_boxscore_id: string;
   minutes_played: number;
   points: number;
   successful_pass_plays: number;
@@ -101,6 +102,7 @@ export interface Boxscore extends BaseBoxscore {
 export type Boxscores = {[boxscore_id: string]: Boxscore};
 
 export interface PlayerBoxscore extends BasePlayerBoxscore {
+  football_player_boxscore_id: string;
   first_name: string;
   last_name: string;
   position: string;
@@ -164,11 +166,13 @@ export interface PlayerBoxscore extends BasePlayerBoxscore {
   quarterback_hurries: number;
   fumbles: number;
   fumbles_lost: number;
+  guid: string;
 }
 
 export type PlayerBoxscores = {[player_boxscore_id: string]: PlayerBoxscore};
 
 export interface StatisticRanking extends BaseStatisticRanking {
+  football_statistic_id: string;
   rating: number;
   rank: number;
   rank_delta_one: number;
@@ -501,6 +505,7 @@ export type StatisticRankings = {[statistic_ranking_id: string]: StatisticRankin
 
 
 export interface PlayerStatisticRanking extends BasePlayerStatisticRanking {
+  football_player_statistic_id: string;
   rating: number;
   max: number;
   rank: number;
@@ -508,7 +513,11 @@ export interface PlayerStatisticRanking extends BasePlayerStatisticRanking {
   rank_delta_seven: number;
   elo: number;
   elo_rank: number;
+  max_elo: number;
+  max_elo_rank: number;
   games: number;
+  wins: number;
+  losses: number;
   minutes_played: number;
   minutes_per_game: number;
   points: number;
@@ -517,6 +526,7 @@ export interface PlayerStatisticRanking extends BasePlayerStatisticRanking {
   penalties_per_game: number;
   penalty_yards: number;
   penalty_yards_per_game: number;
+  adjusted_passing_rating: number;
   passing_attempts: number;
   passing_attempts_per_game: number;
   passing_completions: number;
@@ -600,6 +610,8 @@ export interface PlayerStatisticRanking extends BasePlayerStatisticRanking {
   fumbles_per_game: number;
   fumbles_lost: number;
   games_rank: number;
+  wins_rank: number;
+  losses_rank: number;
   minutes_played_rank: number;
   minutes_per_game_rank: number;
   points_rank: number;
@@ -608,6 +620,7 @@ export interface PlayerStatisticRanking extends BasePlayerStatisticRanking {
   penalties_per_game_rank: number;
   penalty_yards_rank: number;
   penalty_yards_per_game_rank: number;
+  adjusted_passing_rating_rank: number;
   passing_attempts_rank: number;
   passing_attempts_per_game_rank: number;
   passing_completions_rank: number;
@@ -695,6 +708,7 @@ export interface PlayerStatisticRanking extends BasePlayerStatisticRanking {
 export type PlayerStatisticRankings = {[player_statistic_ranking_id: string]: PlayerStatisticRanking};
 
 export interface ConferenceStatisticRanking extends BaseConferenceStatisticRanking {
+  football_conference_statistic_id: string;
   rating: number;
   rank: number;
   rank_delta_one: number;
@@ -1137,7 +1151,6 @@ export interface ConferencePlayerStatisticRanking extends BaseConferencePlayerSt
 	fumbles_per_game: number;
 	fumbles_lost: number;
 	fumbles_lost_per_game: number;
-  guid: string;
   deleted: number;
 }
 
@@ -1145,6 +1158,7 @@ export type ConferencePlayerStatisticRankings = {[conference_player_statistic_ra
 
 
 export interface LeagueStatisticRanking extends BaseLeagueStatisticRanking {
+  football_league_statistic_id: string;
 	rating: number;
 	elo: number;
 	games: number;
@@ -1172,8 +1186,8 @@ export interface LeagueStatisticRanking extends BaseLeagueStatisticRanking {
 	points_per_play: number;
 	successful_pass_plays: number;
 	successful_rush_plays: number;
-	offensive_dvo: number;
-	defensive_dvo: number;
+	offensive_dvoa: number;
+	defensive_dvoa: number;
 	first_downs: number;
 	third_down_conversions: number;
 	third_down_attempts: number;
@@ -1310,6 +1324,7 @@ export interface LeagueStatisticRanking extends BaseLeagueStatisticRanking {
 export type LeagueStatisticRankings = {[league_statistic_ranking_id: string]: LeagueStatisticRanking};
 
 export interface LeaguePlayerStatisticRanking extends BaseLeaguePlayerStatisticRanking {
+  football_league_player_statistic_id: string;
   rating: number;
 	elo: number;
 	games: number;
