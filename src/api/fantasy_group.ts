@@ -123,6 +123,8 @@ export type loadHomeArguments = {
 }
 
 export type loadHomeResults = { error: string } | {
+  // descending, and only seasons that have a league, so the picker cannot offer an empty one
+  seasons: number[];
   fantasy_groups: FantasyGroups;
   fantasy_group_users: FantasyGroupUsers;
   fantasy_entrys: FantasyEntrys;
