@@ -172,6 +172,24 @@ export interface FantasyEntryPlayer {
 export type FantasyEntryPlayers = {[fantasy_entry_player_id: string]: FantasyEntryPlayer};
 
 
+/**
+ * A player an entry wants drafted for it, in preference order, if the pick clock runs out.
+ * Only ever returned to the entry's own owner -- the whole point is that rivals cannot see it.
+ */
+export interface FantasyEntryPrePick {
+  fantasy_entry_pre_pick_id: string;
+  fantasy_group_id: string;
+  fantasy_entry_id: string;
+  player_team_season_id: string;
+  ordinal: number;
+  date_of_entry: string;
+  guid: string;
+  deleted: number;
+}
+
+export type FantasyEntryPrePicks = {[fantasy_entry_pre_pick_id: string]: FantasyEntryPrePick};
+
+
 export interface FantasyBracketSlot {
   fantasy_bracket_slot_id: string;
   first_parent_fantasy_bracket_slot_id: string;

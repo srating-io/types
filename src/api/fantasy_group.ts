@@ -28,6 +28,7 @@ import {
   FantasyRankings,
   FantasyDraftOrders,
   FantasyEntryPlayers,
+  FantasyEntryPrePicks,
   FantasyEntryPlayerStatisticRanking,
 } from '../fantasy.ts';
 
@@ -106,6 +107,8 @@ export type loadResults = { error: string } | {
   fantasy_group_comments: FantasyGroupComments;
   fantasy_draft_orders: FantasyDraftOrders;
   fantasy_entry_players: FantasyEntryPlayers;
+  // only ever the session users own entries
+  fantasy_entry_pre_picks: FantasyEntryPrePicks;
   player_team_seasons: PlayerTeamSeasons;
   players: Players;
   fantasy_entry_player_statistic_rankings: {

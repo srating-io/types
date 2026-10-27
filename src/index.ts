@@ -13,6 +13,7 @@ export * as FantasyBracketSlot from './api/fantasy_bracket_slot.ts';
 export * as FantasyDraftOrder from './api/fantasy_draft_order.ts';
 export * as FantasyEntry from './api/fantasy_entry.ts';
 export * as FantasyEntryPlayerStatisticRanking from './api/fantasy_entry_player_statistic_ranking.ts';
+export * as FantasyEntryPrePick from './api/fantasy_entry_pre_pick.ts';
 export * as FantasyGroup from './api/fantasy_group.ts';
 export * as FantasyGroupComment from './api/fantasy_group_comment.ts';
 export * as FantasyGroupInvite from './api/fantasy_group_invite.ts';
