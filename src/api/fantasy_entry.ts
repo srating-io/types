@@ -25,10 +25,13 @@ import {
   FantasyEntry,
   FantasyEntrys,
   FantasyGroup,
+  FantasyGroupUser,
   FantasyGroupUsers,
   FantasyBracketSlots,
+  FantasyDraftOrders,
   FantasyEntryPlayers,
   FantasyEntryPlayerStatisticRanking,
+  FantasyRankings,
 } from '../fantasy.ts';
 
 export type createEntryArguments = {
@@ -64,4 +67,22 @@ export type loadResults = { error: string } | {
     [fantasy_entry_player_statistic_ranking_id: string]: FantasyEntryPlayerStatisticRanking & (Basketball.PlayerStatisticRanking | Football.PlayerStatisticRanking);
   };
   teams: Teams;
+  /** Per game scoring for the rostered players, over the games this entry counts. */
+  player_boxscores: Basketball.PlayerBoxscores | Football.PlayerBoxscores;
+  /** The whole group at `current`, so an entry can show its rank and who is either side of it. */
+  fantasy_rankings: FantasyRankings;
+  /** This entry only, without the `current` filter, for rank and points over time. */
+  fantasy_ranking_history: FantasyRankings;
+  /** Id and name only - enough to label a standings row, and nothing the page does not need. */
+  fantasy_entrys: FantasyEntrys;
+  /** This entry only, for the pick column and the draft recap. */
+  fantasy_draft_orders: FantasyDraftOrders;
+  /** The entry owner, name only. */
+  fantasy_group_user: FantasyGroupUser | {};
+  /**
+   * Every drafted player in the group as `fantasy_entry_player_id` to its score, so a pick can be
+   * ranked against the pool it came from. A projection rather than the joined stat rows, which are
+   * what makes the group-wide payload heavy.
+   */
+  league_player_ratings: { [fantasy_entry_player_id: string]: number };
 }
