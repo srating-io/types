@@ -14,6 +14,7 @@
 
 import { AuditApi, AuditError } from '../audit.ts';
 import { Pricings } from '../payments.ts';
+import { ShishaLog } from './shisha_log.ts';
 
 /**
  * Every endpoint on this class is admin only and answers `{ error }` to everyone else, so each
@@ -138,17 +139,6 @@ export type apiKeysResults = { error: string } | {
 }
 
 
-export interface DashboardShishaLog {
-  shisha_log_id: number;
-  message: string | null;
-  class: string | null;
-  file: string | null;
-  pid: number | null;
-  date_of_entry: string;
-  deleted: number;
-}
-
-
 export type shishaArguments = {
   /**
    * How far back to look. Bounded server side: `shisha_log` takes a row for every log call in
@@ -160,7 +150,7 @@ export type shishaArguments = {
 
 export type shishaResults = { error: string } | {
   days: number;
-  rows: DashboardShishaLog[];
+  rows: ShishaLog[];
   /** Row count per logging class over the window, so the panel can offer a filter. */
   class_x_rows: {[class_name: string]: number};
 }
