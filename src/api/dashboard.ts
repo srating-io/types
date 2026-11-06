@@ -136,3 +136,31 @@ export interface DashboardApiKey {
 export type apiKeysResults = { error: string } | {
   rows: DashboardApiKey[];
 }
+
+
+export interface DashboardShishaLog {
+  shisha_log_id: number;
+  message: string | null;
+  class: string | null;
+  file: string | null;
+  pid: number | null;
+  date_of_entry: string;
+  deleted: number;
+}
+
+
+export type shishaArguments = {
+  /**
+   * How far back to look. Bounded server side: `shisha_log` takes a row for every log call in
+   * the pipeline, so an unbounded window is the whole table.
+   */
+  days?: number;
+}
+
+
+export type shishaResults = { error: string } | {
+  days: number;
+  rows: DashboardShishaLog[];
+  /** Row count per logging class over the window, so the panel can offer a filter. */
+  class_x_rows: {[class_name: string]: number};
+}
