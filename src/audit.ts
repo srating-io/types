@@ -100,15 +100,8 @@ export interface AuditUpdated {
 
 export type AuditUpdateds = {[audit_updated_id: number]: AuditUpdated};
 
-/**
- * One row per `Manager.log()` call in sports-scraper, the searchable copy of what until now only
- * reached a discord webhook.
- *
- * `class` is what logged and `file` is the forked entry point it ran in -- the supervisor forks
- * every handler by path, so the two differ when a processor logs from inside a handler's process.
- */
-export interface ScraperLog {
-  scraper_log_id: number;
+export interface ShishaLog {
+  shisha_log_id: number;
   message: string | null;
   class: string | null;
   file: string | null;
@@ -117,4 +110,5 @@ export interface ScraperLog {
   deleted: number;
 }
 
-export type ScraperLogs = {[scraper_log_id: number]: ScraperLog};
+
+export type ShishaLogs = {[shisha_log_id: number]: ShishaLog};
