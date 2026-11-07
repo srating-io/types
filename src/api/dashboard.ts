@@ -12,9 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  */
 
-import { AuditApi, AuditError } from '../audit.ts';
+import { AuditApi, AuditError, ShishaLog } from '../audit.ts';
 import { Pricings } from '../payments.ts';
-import { ShishaLog } from './shisha_log.ts';
 
 /**
  * Every endpoint on this class is admin only and answers `{ error }` to everyone else, so each
