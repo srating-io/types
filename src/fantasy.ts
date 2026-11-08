@@ -117,6 +117,14 @@ export interface FantasyGroup {
   notified_finished: number,
   draft_time_per_user_in_seconds: number | null,
   draft_order_seed: string | null,
+  // slate driven modes. Generic rather than survivor named, because the modes after it want the
+  // same knobs -- only survivor_revivals is specific to one game.
+  fantasy_slate_type_terminology_id: string | null,
+  selections_per_slate: number,
+  auto_select: number,
+  survivor_revivals: number,
+  // set only on the site's own free pools, null on a user league
+  official_code: string | null,
   date_of_entry: string;
   guid: string;
   deleted: number;
@@ -131,6 +139,14 @@ export interface FantasyEntry {
   user_id: string;
   name: string;
   paid: number;
+  /**
+   * Materialized by the slate resolver rather than derived from FantasySelections, because every
+   * read path already has this row and a free pool can hold thousands of entries. The resolver
+   * rebuilds the chain from the selections each run, so a stale flag cannot survive a cycle.
+   */
+  eliminated: number;
+  eliminated_fantasy_slate_id: string | null;
+  revivals_used: number;
   date_of_entry: string;
   guid: string;
   deleted: number;
@@ -217,6 +233,82 @@ export interface FantasyBracketSlot {
 }
 
 export type FantasyBracketSlots = {[fantasy_bracket_slot_id: string]: FantasyBracketSlot};
+
+
+/**
+ * One repeating window of a group's run: a survivor week, a pick'em week, a streak day. The
+ * group's own locked / started / drafted / finished are single shot and describe the whole run,
+ * so the phase that repeats lives here instead.
+ *
+ * The games in a slate are deliberately not stored. They are read from `game` by the date range,
+ * because a stored list goes stale the first time a game is postponed.
+ */
+export interface FantasySlate {
+  fantasy_slate_id: string;
+  fantasy_group_id: string;
+  parent_fantasy_slate_id: string | null;
+  ordinal: number;
+  name: string | null;
+  start_datetime: string;
+  end_datetime: string;
+  /** Selections stop here, which today is the first tip off of the slate. */
+  lock_datetime: string;
+  selections_required: number;
+  locked: number;
+  resolved: number;
+  notified_24_hours: number;
+  notified_1_hour: number;
+  notified_resolved: number;
+  date_of_entry: string;
+  guid: string;
+  deleted: number;
+}
+
+export type FantasySlates = {[fantasy_slate_id: string]: FantasySlate};
+
+
+/**
+ * What one entry chose for one slate. Mode neutral on purpose: survivor writes one row per slate
+ * and a weekly pick'em writes one per game, so a row is keyed by the game and not just the slate.
+ *
+ * Only ever returned for a rival entry once the slate has locked -- before that the api nulls the
+ * chosen team, because seeing the field's selections early would decide the game.
+ */
+export interface FantasySelection {
+  fantasy_selection_id: string;
+  fantasy_group_id: string;
+  fantasy_slate_id: string;
+  fantasy_entry_id: string;
+  game_id: string;
+  /** Null on a rival's unlocked selection, and on any mode that selects players instead. */
+  team_id: string | null;
+  player_team_season_id: string | null;
+  opponent_team_id: string | null;
+  /**
+   * 0 to 1, frozen when chosen so a revised projection cannot move the standings after the fact.
+   * Matches prediction.home_percentage, which is a rate and not the percent its name implies.
+   */
+  win_probability: number | null;
+  /** 1..selections_required on the slate. A later pick'em mode reuses it as a confidence rank. */
+  ordinal: number;
+  /** Survivor: this entry may never take this team again. The db enforces it, not the api. */
+  exclusive_team: number;
+  /** The deadline passed and the handler chose this, so the gui can say so. */
+  auto: number;
+  locked: number;
+  /** Null until the game has a result. */
+  correct: number | null;
+  /** The chosen team's winning margin, for the standings tie break. */
+  margin: number | null;
+  revived: number;
+  resolved: number;
+  date_of_entry: string;
+  updated_at: string;
+  guid: string;
+  deleted: number;
+}
+
+export type FantasySelections = {[fantasy_selection_id: string]: FantasySelection};
 
 
 export interface FantasyRanking {

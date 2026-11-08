@@ -17,6 +17,8 @@ export * as FantasyEntryPrePick from './api/fantasy_entry_pre_pick.ts';
 export * as FantasyGroup from './api/fantasy_group.ts';
 export * as FantasyGroupComment from './api/fantasy_group_comment.ts';
 export * as FantasyGroupInvite from './api/fantasy_group_invite.ts';
+export * as FantasySelection from './api/fantasy_selection.ts';
+export * as FantasySlate from './api/fantasy_slate.ts';
 export * as Favorite from './api/favorite.ts';
 export * as Game from './api/game.ts';
 export * as LeaguePlayerStatisticRanking from './api/league_player_statistic_ranking.ts';
