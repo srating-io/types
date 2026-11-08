@@ -15,7 +15,7 @@
 import {
   Games,
   Teams,
-  WinProbability,
+  GameOutlook,
 } from '../general.ts';
 import {
   FantasySelections,
@@ -36,13 +36,15 @@ export type loadResults = { error: string } | {
   games: Games;
   teams: Teams;
   /**
-   * The model's read on each game, resolved by the api rather than handed over as Prediction and
-   * Odds rows. Two reasons, both load bearing: Prediction nulls its percentages for a caller
-   * without a subscription and survivor shows this number to everyone, and collapsing the two
-   * sources here means the nba -- market lines but no projections -- needs no case of its own in
-   * the gui.
+   * The model's read on each game, resolved by the api rather than handed over as Prediction, Odds
+   * and Elo rows, so the gui does not have to know which source to prefer and the nba -- market
+   * lines but no projections -- needs no case of its own.
+   *
+   * The win probability inside is null for a caller without a subscription, because Prediction and
+   * Odds null it themselves; the elo derived favorite is not, so a free entry can still see who
+   * the model likes. That split is the paid line, and it is deliberate.
    */
-  game_id_x_win_probability: {[game_id: string]: WinProbability};
+  game_id_x_game_outlook: {[game_id: string]: GameOutlook};
   /**
    * The session user's own selections, plus every entry's once the slate has locked. A rival's
    * unlocked selection comes back with its team nulled rather than omitted, so the gui can show

@@ -144,18 +144,28 @@ export interface Prediction {
 export type Predictions = {[prediction_id: string]: Prediction};
 
 /**
- * One game's win probability, already resolved to a single pair of numbers by whoever read the
- * sources. Both sides are 0 to 1, matching Prediction's rate-not-percent convention.
+ * One game's outlook, resolved by whoever read the sources so a caller does not have to hold
+ * Prediction and Odds and know which to prefer.
  *
- * It exists so a caller does not have to hold Prediction and Odds and know which to prefer. The
- * api sends this instead of Prediction rows wherever the number has to reach a caller without a
- * subscription, since Prediction nulls its percentages for those. `source` is here so the ui can
- * be honest about a market derived figure rather than calling it a projection.
+ * It is deliberately split along the subscription line. The `win_probability_*` fields come from
+ * Prediction, or the market when a sport has no projection, and both of those classes already null
+ * their own columns for a caller without a subscription -- so these arrive null on their own, with
+ * no gate here. The `elo_*` / `favored_*` fields come from Elo, which has no nullable columns, so
+ * every caller gets to see which team the model likes even when the percentage is withheld.
+ *
+ * Null in `win_probability_home` therefore means "not available to you", never "even odds".
  */
-export type WinProbability = {
-  home: number | null;
-  away: number | null;
-  source: 'projection' | 'market' | null;
+export type GameOutlook = {
+  /** 0 to 1, matching Prediction's rate-not-percent convention. Null without a subscription. */
+  win_probability_home: number | null;
+  win_probability_away: number | null;
+  /** So the ui can call a market derived figure what it is rather than claiming a projection. */
+  win_probability_source: 'projection' | 'market' | null;
+  elo_home: number | null;
+  elo_away: number | null;
+  /** Resolved from elo, so the gui does not re-derive the favorite in two places. */
+  favored_team_id: string | null;
+  elo_gap: number | null;
 }
 
 export interface Game {
