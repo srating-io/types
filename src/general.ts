@@ -143,6 +143,21 @@ export interface Prediction {
 
 export type Predictions = {[prediction_id: string]: Prediction};
 
+/**
+ * One game's win probability, already resolved to a single pair of numbers by whoever read the
+ * sources. Both sides are 0 to 1, matching Prediction's rate-not-percent convention.
+ *
+ * It exists so a caller does not have to hold Prediction and Odds and know which to prefer. The
+ * api sends this instead of Prediction rows wherever the number has to reach a caller without a
+ * subscription, since Prediction nulls its percentages for those. `source` is here so the ui can
+ * be honest about a market derived figure rather than calling it a projection.
+ */
+export type WinProbability = {
+  home: number | null;
+  away: number | null;
+  source: 'projection' | 'market' | null;
+}
+
 export interface Game {
   game_id: string;
   organization_id: string;

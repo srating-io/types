@@ -14,9 +14,8 @@
 
 import {
   Games,
-  Oddsz,
-  Predictions,
   Teams,
+  WinProbability,
 } from '../general.ts';
 import {
   FantasySelections,
@@ -31,16 +30,19 @@ export type loadArguments = {
 /**
  * Everything one slate's screen needs. The games are read from `game` by the slate's date range
  * rather than stored on it, so a postponement moves the game out on its own.
- *
- * `predictions` and `oddsz` are both here because they are not interchangeable: a projection is
- * the better number but only CBB and CFB have one, so the nba falls back to the market line.
  */
 export type loadResults = { error: string } | {
   fantasy_slate: FantasySlate;
   games: Games;
   teams: Teams;
-  predictions: Predictions;
-  oddsz: Oddsz;
+  /**
+   * The model's read on each game, resolved by the api rather than handed over as Prediction and
+   * Odds rows. Two reasons, both load bearing: Prediction nulls its percentages for a caller
+   * without a subscription and survivor shows this number to everyone, and collapsing the two
+   * sources here means the nba -- market lines but no projections -- needs no case of its own in
+   * the gui.
+   */
+  game_id_x_win_probability: {[game_id: string]: WinProbability};
   /**
    * The session user's own selections, plus every entry's once the slate has locked. A rival's
    * unlocked selection comes back with its team nulled rather than omitted, so the gui can show
