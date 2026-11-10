@@ -299,7 +299,10 @@ export interface FantasySelection {
   locked: number;
   /** Null until the game has a result. */
   correct: number | null;
-  /** The chosen team's winning margin, for the standings tie break. */
+  /**
+   * The chosen team's winning margin. Recorded, not scored -- the standings separate entries level
+   * on rounds by how unlikely their selections were, which is `win_probability`.
+   */
   margin: number | null;
   revived: number;
   /**
