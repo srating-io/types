@@ -89,7 +89,8 @@ export type FantasyGroupComments = {[fantasy_group_comment_id: string]: FantasyG
 
 export interface FantasyGroup {
   fantasy_group_id: string;
-  owner_user_id: string;
+  /** Null on the site's own official pools, which are deliberately ownerless. */
+  owner_user_id: string | null;
   organization_id: string;
   division_id: string;
   season: number;
