@@ -12,7 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  */
 
-import { FantasyEntry, FantasySelections } from '../fantasy.ts';
+import { Teams } from '../general.ts';
+import { FantasyEntry, FantasySelections, FantasySlates } from '../fantasy.ts';
 
 /**
  * Choose a team for a slate. The api resolves the game's opponent and freezes the win probability
@@ -50,10 +51,20 @@ export type loadEntryArguments = {
   fantasy_entry_id: string;
 }
 
-/** One entry's whole run, slate by slate, for its history and strategy views. */
+/**
+ * One entry's whole run, slate by slate, for its history and strategy views.
+ *
+ * Carries the same visibility rule as `fantasy_slate.load`: a selection on a slate that has not
+ * locked comes back with its team nulled unless the entry belongs to the caller. Without that,
+ * opening a rival's entry page was a way to read their live pick.
+ */
 export type loadEntryResults = { error: string } | {
   fantasy_entry: FantasyEntry;
   fantasy_selections: FantasySelections;
+  /** The slates the selections sit on, so a run can be read in the order it was played. */
+  fantasy_slates: FantasySlates;
+  /** The chosen teams, so a run names them rather than printing their ids. */
+  teams: Teams;
   /** Teams this entry has spent, so the strategy view can show what is left. */
   used_team_ids: string[];
 }

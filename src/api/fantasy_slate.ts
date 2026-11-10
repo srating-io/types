@@ -34,7 +34,11 @@ export type loadArguments = {
 export type loadResults = { error: string } | {
   fantasy_slate: FantasySlate;
   games: Games;
+  /** The slate's teams, plus the ones the caller has already spent -- a team used in an earlier
+   *  window is usually not playing in this one, and the strategy view still has to name it. */
   teams: Teams;
+  /** How many teams the league's division has, so "x of y left" has a denominator. */
+  total_teams: number;
   /**
    * The model's read on each game, resolved by the api rather than handed over as Prediction, Odds
    * and Elo rows, so the gui does not have to know which source to prefer and the nba -- market
@@ -54,6 +58,10 @@ export type loadResults = { error: string } | {
   /**
    * Teams an entry can no longer take, because survivor only lets each be used once. Sent rather
    * than derived in the gui, since it is also what the strategy view reads.
+   *
+   * Carries the same visibility rule as `fantasy_selections`: a rival's selection on a slate that
+   * has not locked is left out, because a spent-team list that includes tonight's pick tells you
+   * tonight's pick.
    */
   fantasy_entry_id_x_used_team_ids: {[fantasy_entry_id: string]: string[]};
 }
