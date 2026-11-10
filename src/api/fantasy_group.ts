@@ -87,6 +87,12 @@ export type lockResults = { error: string } | {
 
 export type finishArguments = {
   fantasy_group_id: string;
+  /**
+   * Finish it even though its end date has not arrived. For a mode that can be decided early --
+   * a survivor pool is over the moment one entry is left, or none are -- rather than a way around
+   * the guard in general.
+   */
+  early?: number;
 }
 
 export type finishResults = { error: string } | {
