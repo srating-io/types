@@ -301,6 +301,12 @@ export interface FantasySelection {
   /** The chosen team's winning margin, for the standings tie break. */
   margin: number | null;
   revived: number;
+  /**
+   * The game will never produce a result, so this slate neither killed the entry nor counted as
+   * one survived. Set instead of soft deleting, so the history still says which team was voided;
+   * the no-reuse key excludes a voided row, which is what hands the team back.
+   */
+  voided: number;
   resolved: number;
   date_of_entry: string;
   updated_at: string;
