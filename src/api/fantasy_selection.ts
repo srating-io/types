@@ -19,14 +19,14 @@ import { FantasyEntry, FantasySelections, FantasySlates } from '../fantasy.ts';
  * Choose a team for a slate. The api resolves the game's opponent and freezes the win probability
  * itself -- a caller supplying either could pick its own odds.
  *
- * Re-choosing replaces the entry's existing selection for the same slot rather than adding one,
- * so the gui does not have to clear first.
+ * Each slot is one row, rewritten in place: re-choosing updates it, and a null team_id clears it.
  */
 export type selectArguments = {
   fantasy_slate_id: string;
   fantasy_entry_id: string;
+  /** Required with a team_id; ignored when clearing. */
   game_id: string;
-  team_id: string;
+  team_id: string | null;
   /** Which slot on a multi-selection slate. Defaults to 1, which is every survivor slate today. */
   ordinal?: number;
 }
@@ -36,8 +36,8 @@ export type selectResults = { error: string } | {
 }
 
 /**
- * Undo a selection before the slate locks. Soft deleting the row is what frees the team again,
- * because the no-reuse unique key ignores deleted rows.
+ * Undo a selection before the slate locks. The row's team_id is nulled, which frees the team
+ * again, since the no-reuse unique key ignores a null team.
  */
 export type clearArguments = {
   fantasy_selection_id: string;
