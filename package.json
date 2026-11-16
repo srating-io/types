@@ -1,11 +1,7 @@
 {
   "name": "@srating-io/types",
   "private": false,
-<<<<<<< HEAD
   "version": "2.6.0",
-=======
-  "version": "2.5.0",
->>>>>>> status-page
   "description": "srating.io shared TypeScript types for GUI and API",
   "type": "module",
   "main": "dist/index.js",
