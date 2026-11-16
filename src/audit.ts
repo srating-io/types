@@ -43,6 +43,9 @@ export type AuditGuis = {[audit_gui_id: number]: AuditGui};
 /**
  * One row per request to the public api. Written only when the caller presented an api key, so
  * nothing the gui does lands here.
+ *
+ * `usage` is what the request cost, filled in once the response is built. Null means it never
+ * finished, or predates the column.
  */
 export interface AuditApi {
   audit_api_id: number;
@@ -50,6 +53,7 @@ export interface AuditApi {
   class: string | null;
   function: string | null;
   arguments: string | null;
+  usage: number | null;
   date_of_entry: string;
   deleted: number;
 }
