@@ -281,7 +281,7 @@ export interface FantasySelection {
   fantasy_slate_id: string;
   fantasy_entry_id: string;
   game_id: string;
-  /** Null on a rival's unlocked selection, and on any mode that selects players instead. */
+  /** Null when cleared (no pick), on a rival's unlocked selection, and on a mode that selects players. */
   team_id: string | null;
   player_team_season_id: string | null;
   opponent_team_id: string | null;
