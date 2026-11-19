@@ -112,14 +112,37 @@ export interface Snapshot {
   incidents: SnapshotIncident[];
 }
 
+/**
+ * `bucket` is `YYYY-MM-DD` in the daily series and `YYYY-MM-DDTHH:00:00Z` in the hourly one, both
+ * UTC. A daily `p95_ms` is the mean of that day's hourly p95s, not a true daily percentile.
+ */
 export interface HistoryBucket {
   bucket: string;
   uptime: number | null;
   p50_ms: number | null;
+  p95_ms?: number | null;
+  max_ms?: number | null;
 }
 
+/** Shades the charts only; the incident list on the page comes from the snapshot. */
+export interface HistoryIncident {
+  /** Null for a hand-written notice, which shades the site-wide overview only. */
+  service: string | null;
+  title: string | null;
+  started_at: string | null;
+  resolved_at: string | null;
+}
+
+/**
+ * The newer fields are optional so the page can read a file written by an older prober, and the
+ * two can deploy in either order.
+ */
 export interface History {
   generated_at: string;
   days: number;
   services: {[key: string]: HistoryBucket[]};
+  hours?: number;
+  /** The last `hours` complete hours, per service. */
+  hourly?: {[key: string]: HistoryBucket[]};
+  incidents?: HistoryIncident[];
 }
